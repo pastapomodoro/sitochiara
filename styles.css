@@ -17,11 +17,19 @@
     box-sizing: border-box;
   }
   
+  html, body {
+    overflow-x: hidden;
+    width: 100%;
+    position: relative;
+  }
+  
   body {
     font-family: 'Raleway', 'Segoe UI', sans-serif;
     background-color: var(--light-color);
     color: var(--text-color);
     line-height: 1.6;
+    min-height: 100vh;
+    width: 100%;
   }
   
   /* Header */
@@ -189,6 +197,8 @@
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 1rem;
+    width: 100%;
+    overflow-x: hidden;
   }
   
   .section-header {
@@ -251,6 +261,9 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 2rem;
+    width: 100%;
+    margin: 0;
+    padding: 0;
   }
   
   .gallery-item {
@@ -347,6 +360,9 @@
   .contact-container {
     display: flex;
     gap: 3rem;
+    width: 100%;
+    margin: 0;
+    padding: 0 1rem;
   }
   
   .contact-info {
@@ -485,6 +501,8 @@
   align-items: center;
   justify-content: center;
   animation: fadeIn 0.3s;
+  width: 100vw;
+  overflow-x: hidden;
 }
 .modal-box {
   position: relative;
@@ -497,6 +515,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 90%;
+  max-width: 800px;
+  margin: 5vh auto;
+  padding: 1rem;
+  overflow-x: hidden;
 }
 .modal-img {
   max-width: 80vw;
@@ -534,6 +557,8 @@
     background-color: var(--text-color);
     color: var(--white);
     padding: 3rem 0 1rem;
+    width: 100%;
+    overflow-x: hidden;
   }
   
   .footer-content {
@@ -543,6 +568,7 @@
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 2rem;
     padding: 0 1rem;
+    width: 100%;
   }
   
   .footer-logo {
@@ -744,6 +770,23 @@
     .footer-links ul {
         justify-content: center;
     }
+
+    .container {
+        padding: 0 1rem;
+    }
+
+    .gallery-grid {
+        padding: 0;
+    }
+
+    .contact-container {
+        padding: 0 1rem;
+    }
+
+    .modal-box {
+        width: 95%;
+        padding: 0.5rem;
+    }
   }
   
   @media (max-width: 576px) {
@@ -867,4 +910,10 @@
     .modal-img {
         max-height: 80vh;
     }
+  }
+
+  /* Fix for sections */
+  section {
+    width: 100%;
+    overflow-x: hidden;
   }
