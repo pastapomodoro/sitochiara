@@ -217,31 +217,18 @@
   }
   
   .about-content {
-    display: flex;
-    align-items: center;
-    gap: 4rem;
+    display: block;
+    max-width: 800px;
+    margin: 0 auto;
   }
   
   .about-image {
-    flex: 1;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 10px 30px var(--shadow);
-  }
-  
-  .about-image img {
-    width: 100%;
-    height: auto;
-    display: block;
-    transition: transform 0.5s ease;
-  }
-  
-  .about-image:hover img {
-    transform: scale(1.05);
+    display: none;
   }
   
   .about-text {
-    flex: 1;
+    width: 100%;
+    text-align: center;
   }
   
   .about-text h4 {
@@ -355,7 +342,7 @@
     background: #8458B3;
     color: #fff;
   }
-  }
+  
 
   .contact-container {
     display: flex;
@@ -413,7 +400,7 @@
     transition: all 0.3s ease;
   }
 
-  /* Nuova lista contatti */
+  /* Contact list styles */
   .contact-list {
     list-style: none;
     padding: 0;
@@ -422,6 +409,7 @@
     flex-direction: column;
     gap: 1.2rem;
   }
+
   .contact-list li {
     display: flex;
     align-items: center;
@@ -431,39 +419,41 @@
     box-shadow: 0 1px 6px rgba(160,210,235,0.08);
     font-size: 1.1rem;
     transition: background 0.2s;
+    white-space: nowrap;
+    overflow: hidden;
+    color: var(--white);
   }
-  .contact-list li:hover {
-    background: rgba(160,210,235,0.15);
-  }
+
   .contact-list i {
     font-size: 1.5rem;
     margin-right: 1rem;
-    color: var(--accent-color);
+    color: var(--white);
     min-width: 28px;
     text-align: center;
-    text-shadow: 0 1px 2px rgba(0,0,0,0.13);
+    flex-shrink: 0;
   }
+
   .contact-label {
     font-weight: 600;
     margin-right: 0.5rem;
-    color: var(--accent-color);
+    color: var(--white);
     letter-spacing: 0.1px;
-    text-shadow: 0 1px 2px rgba(0,0,0,0.10);
+    flex-shrink: 0;
   }
+
   .contact-link {
     color: var(--white);
-    text-decoration: underline;
+    text-decoration: none;
     font-weight: 500;
     transition: color 0.2s;
-    margin-left: 0.2rem;
-    word-break: break-all;
-    text-shadow: 0 1px 2px rgba(0,0,0,0.11);
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
+
   .contact-link:hover {
-    color: var(--accent-color);
-    text-decoration: none;
+    color: var(--primary-color);
   }
-  
+
   .social-icon:hover {
     background-color: var(--accent-color);
     transform: translateY(-3px);
@@ -607,90 +597,274 @@
   /* Responsive */
   @media (max-width: 992px) {
     .about-content {
-      flex-direction: column;
+        padding: 0 1rem;
     }
-    
-    .contact-container {
-      flex-direction: column;
+
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+        padding: 0 1rem;
+    }
+
+    .container {
+        padding: 0 1.5rem;
     }
   }
   
   @media (max-width: 768px) {
-    .hero h2 {
-      font-size: 2.1rem;
+    /* Header & Navigation */
+    .header-container {
+        padding: 0.8rem 1rem;
     }
-    .hero h2 span {
-      font-size: 2.6rem;
-    }
-    .hero p {
-      font-size: 0.95rem;
-    }
-    .section-header h3 {
-      font-size: 2rem;
-    }
-    
-    /* Mobile Navigation */
+
     .nav-toggle {
-      display: block;
-      background: none;
-      border: none;
-      font-size: 1.5rem;
-      color: var(--text-color);
-      cursor: pointer;
+        display: block;
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        color: var(--accent-color);
+        cursor: pointer;
+        padding: 0.5rem;
     }
-    
+
+    nav {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 80%;
+        max-width: 300px;
+        height: 100vh;
+        background: var(--white);
+        transition: right 0.3s ease;
+        z-index: 1000;
+        box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+    }
+
     nav ul {
-      position: fixed;
-      top: 0;
-      right: -100%;
-      width: 70%;
-      height: 100vh;
-      background-color: var(--white);
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      transition: right 0.3s ease;
-      box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+        flex-direction: column;
+        padding: 4rem 2rem;
+        height: 100%;
     }
-    
+
     nav ul.active {
-      right: 0;
+        right: 0;
     }
-    
+
     nav ul li {
-      margin: 1.5rem 0;
+        margin: 1rem 0;
     }
-    
+
     .close-nav {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      background: none;
-      border: none;
-      font-size: 1.5rem;
-      color: var(--text-color);
-      cursor: pointer;
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        color: var(--accent-color);
+        cursor: pointer;
+        padding: 0.5rem;
+    }
+
+    /* Hero Section */
+    .hero {
+        min-height: 90vh;
+        padding: 2rem 1rem;
+    }
+
+    .hero h2 {
+        font-size: 2.5rem;
+    }
+
+    .hero h2 span {
+        font-size: 3rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
+        padding: 0 1rem;
+    }
+
+    /* About Section */
+    .section-header h3 {
+        font-size: 2rem;
+    }
+
+    .about-text h4 {
+        font-size: 1.8rem;
+    }
+
+    .about-text p {
+        font-size: 1rem;
+        line-height: 1.7;
+    }
+
+    /* Gallery Section */
+    .gallery-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .gallery-image {
+        height: 250px;
+    }
+
+    .gallery-info {
+        padding: 1.2rem;
+    }
+
+    .gallery-info h4 {
+        font-size: 1.2rem;
+    }
+
+    /* Contact Section */
+    .contact-info {
+        padding: 2rem 1.5rem;
+    }
+
+    .contact-info h4 {
+        font-size: 1.8rem;
+    }
+
+    .contact-list li {
+        padding: 0.8rem 1rem;
+    }
+
+    .contact-list i {
+        font-size: 1.3rem;
+    }
+
+    /* Footer */
+    .footer-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 2rem;
+    }
+
+    .footer-links ul {
+        justify-content: center;
     }
   }
   
   @media (max-width: 576px) {
+    /* Header */
     .header-container {
-      padding: 0.5rem;
+        padding: 0.8rem;
     }
-    
-    .logo img {
-      height: 40px;
-    }
-    
+
     .logo h1 {
-      font-size: 1.5rem;
+        font-size: 1.5rem;
     }
-    
+
+    /* Hero Section */
     .hero {
-      height: 60vh;
+        min-height: 85vh;
+    }
+
+    .hero h2 {
+        font-size: 2rem;
+    }
+
+    .hero h2 span {
+        font-size: 2.5rem;
+    }
+
+    .btn {
+        padding: 0.7rem 1.5rem;
+        font-size: 0.9rem;
+    }
+
+    /* About Section */
+    .section-header h3 {
+        font-size: 1.8rem;
+    }
+
+    .about-text h4 {
+        font-size: 1.6rem;
+    }
+
+    /* Gallery Section */
+    .gallery-image {
+        height: 200px;
+    }
+
+    .gallery-info h4 {
+        font-size: 1.1rem;
+    }
+
+    .gallery-info p {
+        font-size: 0.85rem;
+    }
+
+    /* Contact Section */
+    .contact-info h4 {
+        font-size: 1.5rem;
+    }
+
+    .contact-list li {
+        font-size: 0.95rem;
+        padding: 0.8rem 1rem;
+    }
+
+    .contact-list i {
+        font-size: 1.2rem;
+        margin-right: 0.8rem;
+        min-width: 24px;
+    }
+
+    .contact-label {
+        margin-right: 0.3rem;
+    }
+
+    /* Modal */
+    .modal-box {
+        width: 95%;
+        padding: 0.5rem;
     }
     
-    .gallery-grid {
-      grid-template-columns: 1fr;
+    .modal-img {
+        max-height: 60vh;
+    }
+
+    .modal-close {
+        width: 32px;
+        height: 32px;
+        font-size: 1.5rem;
+        top: -16px;
+        right: -16px;
+    }
+  }
+
+  /* Fix for touch devices */
+  @media (hover: none) {
+    .gallery-item:hover {
+        transform: none;
+    }
+
+    .gallery-item:hover .gallery-image img {
+        transform: none;
+    }
+
+    .btn:hover {
+        transform: none;
+    }
+
+    .social-icon:hover {
+        transform: none;
+    }
+  }
+
+  /* Fix for landscape orientation on mobile */
+  @media (max-height: 500px) and (orientation: landscape) {
+    .hero {
+        min-height: 100vh;
+    }
+
+    nav ul {
+        padding: 2rem;
+    }
+
+    .modal-img {
+        max-height: 80vh;
     }
   }
